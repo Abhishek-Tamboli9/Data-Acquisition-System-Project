@@ -1,7 +1,7 @@
 # Data-Acquisition-System-Project
 
 ## Phase 1: Project Requirement
-  a. Project abstract Preparation
+  a. Project abstract Preparation  
   b. Setup Embedded Linux Development Environment
 
 ## Phase 2: Add LM35 Temperature sensor & EEPROM on target board
