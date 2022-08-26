@@ -1,0 +1,59 @@
+From 9a9d244201b53e78969fd0c22993dd9e57eba6e6 Mon Sep 17 00:00:00 2001
+From: Abhishek_Tamboli <abhishektamboli9@outlook.com>
+Date: Fri, 26 Aug 2022 21:36:02 +0530
+Subject: [PATCH] Identify ADC and EEPROM I2C slave low level driver and find
+ out low level driver comes which Linux subsystem
+
+---
+ drivers/iio/adc/ti_am335x_adc.c | 5 +++++
+ drivers/misc/eeprom/at24.c      | 4 ++++
+ 2 files changed, 9 insertions(+)
+
+diff --git a/drivers/iio/adc/ti_am335x_adc.c b/drivers/iio/adc/ti_am335x_adc.c
+index 9d984f2a8..c1ac6f018 100644
+--- a/drivers/iio/adc/ti_am335x_adc.c
++++ b/drivers/iio/adc/ti_am335x_adc.c
+@@ -611,6 +611,8 @@ static int tiadc_probe(struct platform_device *pdev)
+ 	struct device_node	*node = pdev->dev.of_node;
+ 	int			err;
+ 
++	printk("%s:%s:%d\n",__FILE__,__func__,__LINE__);
++
+ 	if (!node) {
+ 		dev_err(&pdev->dev, "Could not find valid DT data.\n");
+ 		return -EINVAL;
+@@ -667,6 +669,9 @@ err_buffer_unregister:
+ 	tiadc_iio_buffered_hardware_remove(indio_dev);
+ err_free_channels:
+ 	tiadc_channels_remove(indio_dev);
++
++	printk("%s:%s:%d\n",__FILE__,__func__,__LINE__);
++
+ 	return err;
+ }
+ 
+diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
+index dc3537651..68e6a957e 100644
+--- a/drivers/misc/eeprom/at24.c
++++ b/drivers/misc/eeprom/at24.c
+@@ -630,6 +630,8 @@ static int at24_probe(struct i2c_client *client)
+ 	u8 test_byte;
+ 	int err;
+ 
++	printk("%s:%s:%d\n",__FILE__,__func__,__LINE__);
++
+ 	i2c_fn_i2c = i2c_check_functionality(client->adapter, I2C_FUNC_I2C);
+ 	i2c_fn_block = i2c_check_functionality(client->adapter,
+ 					       I2C_FUNC_SMBUS_WRITE_I2C_BLOCK);
+@@ -755,6 +757,8 @@ err_clients:
+ 	at24_remove_dummy_clients(at24);
+ 	pm_runtime_disable(dev);
+ 
++	printk("%s:%s:%d\n",__FILE__,__func__,__LINE__);
++
+ 	return err;
+ }
+ 
+-- 
+2.17.1
+

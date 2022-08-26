@@ -1,0 +1,52 @@
+From 2729f661fe0991511a72eaeb634181eb4e708726 Mon Sep 17 00:00:00 2001
+From: Abhishek_Tamboli <abhishektamboli9@outlook.com>
+Date: Thu, 25 Aug 2022 20:56:51 +0530
+Subject: [PATCH] Add EEPROM I2C1 slave information and ADC device controller
+ in to Device tree source code
+
+---
+ arch/arm/boot/dts/km-bbb-am335x.dts | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/km-bbb-am335x.dts b/arch/arm/boot/dts/km-bbb-am335x.dts
+index 3b14abf8e..86fc711de 100644
+--- a/arch/arm/boot/dts/km-bbb-am335x.dts
++++ b/arch/arm/boot/dts/km-bbb-am335x.dts
+@@ -39,7 +39,6 @@
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 	};
+-
+ };
+ 
+ &am33xx_pinmux {
+@@ -52,6 +51,12 @@
+         };
+ };
+ 
++&tscadc {
++	status = "okay";
++		adc {
++			ti,adc-channels = <0 1>;
++			};
++	};
+ 
+ &i2c1 {
+         pinctrl-names = "default";
+@@ -67,6 +72,13 @@
+                 #address-cells = <1>;
+                 #size-cells = <1>;
+         };
++
++	eeprom: 24c02@50 {
++		compatible = "atmel,24c02";
++		reg = <0x50>;
++		#address-cells= <1>;
++		#size-cells = <1>;
++	};
+ };
+ 
+ 
+-- 
+2.17.1
+

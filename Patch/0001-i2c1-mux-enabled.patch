@@ -1,0 +1,40 @@
+From ef6e350ca31b6497372fb0d05cbdc037c32befff Mon Sep 17 00:00:00 2001
+From: Abhishek_Tamboli <abhishektamboli9@outlook.com>
+Date: Sat, 6 Aug 2022 17:10:21 +0530
+Subject: [PATCH] i2c1 mux enabled
+
+---
+ board/ti/am335x/mux.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/board/ti/am335x/mux.c b/board/ti/am335x/mux.c
+index 1f6456b1..46441d2d 100644
+--- a/board/ti/am335x/mux.c
++++ b/board/ti/am335x/mux.c
+@@ -22,6 +22,15 @@
+ #include "../common/board_detect.h"
+ #include "board.h"
+ 
++static struct module_pin_mux i2c1_pin_mux[] = {
++        {OFFSET(spi0_d1), (MODE(2) | RXACTIVE |
++                        PULLUDEN | SLEWCTRL)}, /* I2C_DATA */
++        {OFFSET(spi0_cs0), (MODE(2) | RXACTIVE |
++                        PULLUDEN | SLEWCTRL)}, /* I2C_SCLK */
++        {-1},
++};
++
++
+ static struct module_pin_mux lcd_pin_mux[] = {
+         {OFFSET(gpmc_ad12), (MODE(7) | PULLUDEN)},   /* GPIO1_12 */     //-->KM-LCD_D4
+         {OFFSET(gpmc_ad13), (MODE(7) | PULLUDEN)},   /* GPIO1_13 */     //-->KM-LCD_D5
+@@ -111,6 +120,7 @@ void km_bbb_mux(void)
+ 	 configure_module_pin_mux(lcd_pin_mux);
+          configure_module_pin_mux(mii1_pin_mux);
+ 	 configure_module_pin_mux(km_bbb_gpio_pin_mux);
++	 configure_module_pin_mux(i2c1_pin_mux);
+ }
+ 
+ void enable_board_pin_mux(void)
+-- 
+2.17.1
+
