@@ -1,21 +1,21 @@
 # Data-Acquisition-System-Project
 
 ## Phase 1: Project Requirement
-  a. Project abstract Preparation  
-  b. Setup Embedded Linux Development Environment
+  a. Project abstract Preparation.  
+  b. Setup Embedded Linux Development Environment.
 
 ## Phase 2: Add LM35 Temperature sensor & EEPROM on target board
 ###  Step 1: Study Phase
           a. High Level Analysis:-  Understand Basics/terminology of ADC controller & EEPROM and prepare a document.
                                     Project Deliverable: Basics Document
           b. Low Level Analysis:-   Study ADC controller in AM3358 Technical Reference Manual and undestood the below things.
-                                    ADC controller specifications
-                                    ADC Functional Block Diagram
-                                    ADC Controller Register Programming model
+                                    ADC controller specifications.
+                                    ADC Functional Block Diagram.
+                                    ADC Controller Register Programming model.
                                     Identify LM35 interface with ADC channel with the help of schematic diagram.
                                     Understood EEPROM Write I2C comunication protcol format.
-                                    Prepare ADC-AM3358 Functional Block diagram
-                                    Prepare EEPROM-AM3358 Functional Block diagram
+                                    Prepare ADC-AM3358 Functional Block diagram.
+                                    Prepare EEPROM-AM3358 Functional Block diagram.
           Project Deliverable : Document
 ###  Step 2: Implementation
           a. Bootloader stage:- Enable ADC & I2C1 controller mux configuration and clock in u-boot source code.
